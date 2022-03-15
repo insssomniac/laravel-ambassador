@@ -40,4 +40,9 @@ class AuthController extends Controller
         ])->withCookie($cookie);
     }
 
+    public function user(Request $request)
+    {
+        return $request->user();
+    }
+
 }
