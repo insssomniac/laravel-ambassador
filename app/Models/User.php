@@ -38,6 +38,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|User ambassadors()
  * @method static \Illuminate\Database\Eloquent\Builder|User admins()
+ * @property-read mixed $revenue
  */
 class User extends Authenticatable
 {
@@ -57,6 +58,16 @@ class User extends Authenticatable
     public function scopeAdmins($query)
     {
         return $query->where('is_admin', 1);
+    }
+
+    public function orders()
+    {
+        $this->hasMany(Order::class);
+    }
+
+    public function getRevenueAttribute()
+    {
+        return $this->orders->sum(fn(Order $order) => $order->ambassador_revenue);
     }
 
 }
