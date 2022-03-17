@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductUpdateEvent;
 use App\Models\Product;
 use App\Services\ProductService;
 use Cache;
@@ -32,6 +33,8 @@ class ProductController extends Controller
     {
         $product = Product::create($request->only('title', 'description', 'image', 'price'));
 
+        event(new ProductUpdateEvent);
+
         return response($product, Response::HTTP_CREATED);
     }
 
@@ -57,6 +60,8 @@ class ProductController extends Controller
     {
         $product->update($request->only('title', 'description', 'image', 'price'));
 
+        event(new ProductUpdateEvent);
+
         return response($product, Response::HTTP_ACCEPTED);
     }
 
@@ -69,6 +74,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+
+        event(new ProductUpdateEvent);
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
