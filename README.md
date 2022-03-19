@@ -1,4 +1,4 @@
-This is a training project using the Laravel backend, Vue JS & NUXT frontend, with REST API and Sanctum auth.
+This is a backend part for training project using the Laravel backend, Vue JS & NUXT frontend, with REST API and Sanctum auth.
 
 To install and start the project just run composer install and docker-compose up
 
