@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\OrderCompletedEvent;
 use App\Events\ProductUpdateEvent;
+use App\Listeners\NotifyAdminListener;
+use App\Listeners\NotifyAmbassadorListener;
 use App\Listeners\ProductUpdatedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         ProductUpdateEvent::class => [
             ProductUpdatedListener::class
+        ],
+        OrderCompletedEvent::class => [
+            NotifyAdminListener::class,
+            NotifyAmbassadorListener::class
         ]
     ];
 
