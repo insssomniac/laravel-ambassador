@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 function commonRoutes(string $scope)
 {
     Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
 
     Route::middleware(['auth:sanctum', $scope])->group(function () {
         Route::get('user', [AuthController::class, 'user']);
@@ -31,8 +32,6 @@ function commonRoutes(string $scope)
         Route::put('users/password', [AuthController::class, 'updatePassword']);
     });
 }
-
-Route::post('register', [AuthController::class, 'register']);
 
 // Admin
 Route::prefix('admin')->group(function () {
