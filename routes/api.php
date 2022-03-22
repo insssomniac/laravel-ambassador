@@ -28,7 +28,7 @@ function commonRoutes(string $scope)
     Route::middleware(['auth:sanctum', $scope])->group(function () {
         Route::get('user', [AuthController::class, 'user']);
         Route::post('logout', [AuthController::class, 'logout']);
-        Route::put('user/update-info', [AuthController::class, 'updateInfo']);
+        Route::put('user/info', [AuthController::class, 'updateInfo']);
         Route::put('users/password', [AuthController::class, 'updatePassword']);
     });
 }
