@@ -100,7 +100,7 @@ class ProductController extends Controller
         /** @var Collection $products */
         $products = Cache::remember('products_backend', 60 * 30, fn() => Product::all());
 
-        if ($search = $request->input('search')) {
+        if ($search = $request->input('s')) {
             $products = ProductService::filterProducts($products, $search);
         }
 
